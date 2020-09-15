@@ -32,9 +32,7 @@ A big influence for this project are check-ins for gyms, where a member would sc
 User Model should have
 - username, email, password, first name, last name, date of birth, gender
 
-
 Check-in Model should have
-
 - user, date, time
 
 Events Model
