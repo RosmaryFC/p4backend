@@ -30,13 +30,15 @@ A big influence for this project are check-ins for gyms, where a member would sc
 ## Models 
 
 User Model should have
-- username, email, password, first name, last name, date of birth, gender
+- username, email, password, first name, last name
+   * Post MVP: date of birth, gender, rank, pin
 
 Check-in Model should have
 - user, date, time
 
 Events Model
 - event type, event name, date, price, address
+   * Post MVP: users []
 
 
 ## Time/Priority Matrix 
