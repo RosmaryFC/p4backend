@@ -19,11 +19,13 @@ class LoginSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=255, read_only=True)
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255, write_only=True)
+    # TODO: make is_admin editable by superuser
+    is_admin = serializers.BooleanField(read_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'token')
+        fields = ('username', 'email', 'password', 'is_admin', 'token')
 
     def validate(self, data):
         username = data.get('username', None)
@@ -53,6 +55,7 @@ class LoginSerializer(serializers.ModelSerializer):
         return {
             "username": user.username,
             "email": user.email,
+            "is_admin": user.is_admin,
             "token": user.token
         }
 
