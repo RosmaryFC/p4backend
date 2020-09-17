@@ -50,6 +50,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # TODO: users should have a category beginner, intermediate, advanced
+    # TODO: post MVP users should have rank
 
     USERNAME_FIELD = 'username'
     # TODO: if there are other vars that need to be required add below
