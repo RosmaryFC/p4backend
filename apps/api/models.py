@@ -27,7 +27,6 @@ class Event(models.Model):
         return self.name
 
 
-# TODO: can both attendance can be merged
 class Attendance(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -56,7 +55,7 @@ class Attendance(models.Model):
 #     def __str__(self):
 #         return self.name
 #
-#
+## TODO: can both attendance can be merged
 # class SessionAttendance(models.Model):
 #
 #     owner = models.ForeignKey(User, on_delete=models.CASCADE)

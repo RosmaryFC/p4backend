@@ -61,6 +61,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
+    # TODO: List all students, should be public
     class Meta:
         model = User
         fields = ('id', 'username', 'email')

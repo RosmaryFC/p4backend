@@ -20,7 +20,10 @@ class EventViewSet(viewsets.ModelViewSet):
 
     # TODO: get all events should be allowed with no authentication
     def get_queryset(self):
-        queryset = Event.objects.all().filter(owner=self.request.user)
+        # this one filters by user id
+        # queryset = Event.objects.all().filter(owner=self.request.user)
+        # get all events
+        queryset = Event.objects.all()
         return queryset
 
     def create(self, request, *args, **kwargs):
