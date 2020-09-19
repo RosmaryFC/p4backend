@@ -22,7 +22,7 @@ class EventViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         # this one filters by user id
         # queryset = Event.objects.all().filter(owner=self.request.user)
-        # get all events
+        # TODO: changed! Test -> every user can get all events
         queryset = Event.objects.all()
         return queryset
 
@@ -40,11 +40,15 @@ class EventViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
     # TODO: right now, user can only delete category they created, make it so that admins can delete category
+    # TODO: delete does not return a response!!
     def destroy(self, request, *args, **kwargs):
         event = Event.objects.get(pk=self.kwargs["pk"])
+        serializer = self.get_serializer(self.get_object())
         if not request.user == event.owner:
             raise PermissionDenied("you cannot delete this event")
-        return super().destroy(request, *args, **kwargs)
+        super().destroy(request, *args, **kwargs)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        # return super().destroy(request, *args, **kwargs)
 
 
 class EventAttendances(generics.ListCreateAPIView):
@@ -56,7 +60,7 @@ class EventAttendances(generics.ListCreateAPIView):
             event = Event.objects.get(pk=self.kwargs["event_pk"])
             # TODO: if admin, can see all attendance, if not, can only see their attendance
             queryset = Attendance.objects.filter(
-                owner=self.request.user,
+                # owner=self.request.user,
                 event=event
             )
             return queryset
