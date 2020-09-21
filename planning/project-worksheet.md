@@ -257,3 +257,28 @@ Superuser created successfully.
 ```
 
 ***SOLUTION*** reset the database on heroku and that fixed it!
+
+
+***ERROR*** when making request to backend for route `http://127.0.0.1:8000/api/eventspublic/` anyone can make CRUD requests to it
+```
+# TODO: create a get request to get all events but without token
+class EventViewSetPublic(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        return queryset
+```
+***SOLUTION*** changes AllowAny to IsAuthenticatedOrReadOnly
+```
+# TODO: create a get request to get all events but without token
+class EventViewSetPublic(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        return queryset
+```
+

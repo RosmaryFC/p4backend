@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from rest_framework.exceptions import (
     ValidationError, PermissionDenied
 )
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from apps.api.models import Event, Attendance
 from apps.api.serializers import EventSerializer, AttendanceSerializer
 
@@ -54,7 +54,7 @@ class EventViewSet(viewsets.ModelViewSet):
 
 # TODO: create a get request to get all events but without token
 class EventViewSetPublic(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = EventSerializer
 
     def get_queryset(self):
