@@ -1,22 +1,13 @@
-# **DeveloperToob**
+# **Hiraldo's Kai**
 
-## [Frontend](https://github.com/RosmaryFC/p4frontend)
+## [Link to Frontend](https://github.com/RosmaryFC/p4frontend)
 
 ### Project Snapshots
 
-***
  UPDATE! WIll go here
- 
-### Website
-
 ***
-[backend](https://rf-p4backend.herokuapp.com/)
-
-[frontend](https://hiraldokai.netlify.app/) 
 
 ### Description
-
-***
 
 Checking into events for students will be much easier now with the ability to select which event you went to based on your profile!
 
@@ -26,14 +17,15 @@ Students can log in and select which events they have attended in order to meet 
 Admin users can Create, Update or Delete events once they are no longer needed.
 
 Hiraldo's Kai is a great place to stay up to date with the martial arts community.
-
-
-
-### Technologies
-
-The backend is made with Ruby on Rails, and PostgreSQL. It is deployed through Heroku. 
-
 ***
+
+### Websites
+[backend](https://rf-p4backend.herokuapp.com/)
+
+[frontend](https://hiraldokai.netlify.app/) 
+***
+### Technologies
+The backend is made with Ruby on Rails, and PostgreSQL. It is deployed through Heroku. 
 
 [<img src ="https://banner2.cleanpng.com/20180711/rtc/kisspng-django-web-development-web-framework-python-softwa-django-5b45d913f29027.4888902515313042119936.jpg" width="60" height="50">](https://www.djangoproject.com/)
 [<img src ="https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc" width="50" height="50">](https://www.python.org/)
@@ -42,11 +34,9 @@ The backend is made with Ruby on Rails, and PostgreSQL. It is deployed through H
 [<img src ="https://jwt.io/img/logo-asset.svg" width="100" height="50">](https://jwt.io/introduction/)
 [<img src ="https://res.cloudinary.com/practicaldev/image/fetch/s--rAk2-3Xf--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/gz5xantp1vycu7ueleh4.jpg" width="100" height="50">](https://www.django-rest-framework.org/)
 
-
+***
 
 ### Features
-
-***
 
 - Users can create an account only if they have a secret key given to them by the school
 - Users can create either an admin account or a student account
@@ -56,9 +46,9 @@ The backend is made with Ruby on Rails, and PostgreSQL. It is deployed through H
 - students can update their attendance for each event they have gone to
 - events are displayed on the home page for everyone to see!
 
-### Future Implementation
-
 ***
+
+### Future Implementation
 
 - daily check-in to beginner, intermediate, advanced classes
 - user can upload a flyer for an event
@@ -67,7 +57,9 @@ The backend is made with Ruby on Rails, and PostgreSQL. It is deployed through H
 - admin can modify  event attendance, and modify or update student user status's
 - Nicer frontend design
 
-# The Backend
+***
+
+## The Backend
 
 ### User Model
 
