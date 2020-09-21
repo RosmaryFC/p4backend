@@ -176,3 +176,84 @@ STATUS 204: no content
 
 STATUS 200:OK
 ```
+
+***ERROR***: Having an error when trying to migrate to heroku deployed backend
+```
+(venv) Rosmarys-MacBook-Pro:p4backend Rosemary$ heroku run python manage.py migrate --app=rf-p4backend
+Running python manage.py migrate on ⬢ rf-p4backend... up, run.3744 (Free)
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    main()
+  File "manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/core/management/__init__.py", line 401, in execute_from_command_line
+    utility.execute()
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/core/management/__init__.py", line 395, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/core/management/base.py", line 330, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/core/management/base.py", line 371, in execute
+    output = self.handle(*args, **options)
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/core/management/base.py", line 85, in wrapped
+    res = handle_func(*args, **kwargs)
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/core/management/commands/migrate.py", line 95, in handle
+    executor.loader.check_consistent_history(connection)
+  File "/app/.heroku/python/lib/python3.6/site-packages/django/db/migrations/loader.py", line 306, in check_consistent_history
+    connection.alias,
+django.db.migrations.exceptions.InconsistentMigrationHistory: Migration admin.0001_initial is applied before its dependency authentication.0001_initial on database 'default'.
+
+```
+https://stackoverflow.com/questions/51040436/django-db-migrations-exceptions-inconsistentmigrationhistory-issue-after-creatin/51041776
+
+
+reset heroku database
+ran command: heroku run python manage.py migrate --app=rf-p4backend
+
+```
+(venv) Rosmarys-MacBook-Pro:p4backend Rosemary$ heroku run python manage.py migrate --app=rf-p4backend
+Running python manage.py migrate on ⬢ rf-p4backend... up, run.9781 (Free)
+Operations to perform:
+  Apply all migrations: admin, api, auth, authentication, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying authentication.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying authentication.0002_user_is_admin... OK
+  Applying api.0001_initial... OK
+  Applying api.0002_auto_20200916_1656... OK
+  Applying api.0003_auto_20200916_1656... OK
+  Applying api.0004_auto_20200917_0437... OK
+  Applying api.0005_event_img... OK
+  Applying api.0006_auto_20200920_0454... OK
+  Applying api.0007_auto_20200920_0503... OK
+  Applying sessions.0001_initial... OK
+(venv) Rosmarys-MacBook-Pro:p4backend Rosemary$ 
+```
+ran command:  heroku run python manage.py createsuperuser --app=rf-p4backend
+```
+(venv) Rosmarys-MacBook-Pro:p4backend Rosemary$ heroku run python manage.py createsuperuser --app=rf-p4backend
+Running python manage.py createsuperuser on ⬢ rf-p4backend... up, run.3465 (Free)
+Username: *******
+Email: **************
+Password: 
+Password (again): 
+Superuser created successfully.
+
+```
+
+***SOLUTION*** reset the database on heroku and that fixed it!
