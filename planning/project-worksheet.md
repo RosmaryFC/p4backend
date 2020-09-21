@@ -119,3 +119,60 @@ function reverse(string) {
 #### SAMPLE.....
 **ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
 **RESOLUTION**: Missing comma after first object in sources {} object
+
+**ERROR**: delete event method can only be deleted by user that created it. user can only view events that they created,
+when deleting an event, no response would return
+```
+
+```
+***RESOLUTION**: I updated my delete method to allow any user to view, and return a response
+https://stackoverflow.com/questions/52683250/django-rest-framework-delete-returns-no-content-in-the-body
+```
+    def destroy(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_object())
+        super().destroy(request, *args, **kwargs)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+```
+***ERROR***: Trying to delete an attendance row but I keep getting a 301 error and then get rerouted to a get
+```
+DELETE http://127.0.0.1:8000/api/attendances/6
+```
+I wasn't too sure what the proper route was I tried many different delete routes in which I referenced my view class for
+I figure I was just using the incorrect route. I did some more research and came across this solution
+https://stackoverflow.com/questions/4891879/http-delete-request-to-django-returns-a-301moved-permenantly
+
+***RESOLUTION***: append a slash T.T
+```
+DELETE http://127.0.0.1:8000/api/attendances/6/
+```
+
+***ERROR***: Delete request for attendance does not return a response
+```
+DELETE METHOD
+def destroy(self, request, *args, **kwargs):
+    print("destroy attendance viewset")
+    attendance = Attendance.objects.get(pk=self.kwargs["pk"])
+    if not request.user == attendance.owner:
+        raise PermissionDenied(
+            "you have no permission to delete this attendance"
+        )
+    return super().destroy(request, *args, **kwargs)
+
+STATUS 204: no content
+```
+***RESPONSE***: fix delete request method to return a response
+```
+    def destroy(self, request, *args, **kwargs):
+        print("destroy attendance viewset")
+        attendance = Attendance.objects.get(pk=self.kwargs["pk"])
+        serializer = self.get_serializer(self.get_object())
+        # TODO: only admin can destroy an attendance
+        if not request.user == attendance.owner:
+            raise PermissionDenied(
+                "you have no permission to delete this attendance"
+            )
+        super().destroy(request, *args, **kwargs)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+STATUS 200:OK
+```

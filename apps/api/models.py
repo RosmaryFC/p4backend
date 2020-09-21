@@ -13,6 +13,7 @@ class Event(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     # TODO: add image field to upload image
+    flyer = models.TextField(max_length=300, default='', blank=True)
     type = models.CharField(max_length=100)
     # TODO: change to DateField possibly
     date = models.CharField(max_length=100)

@@ -23,6 +23,7 @@ class EventViewSet(viewsets.ModelViewSet):
         # this one filters by user id
         # queryset = Event.objects.all().filter(owner=self.request.user)
         # TODO: changed! Test -> every user can get all events
+        # TODO: get events from most recent to oldest
         queryset = Event.objects.all()
         return queryset
 
@@ -44,11 +45,21 @@ class EventViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         event = Event.objects.get(pk=self.kwargs["pk"])
         serializer = self.get_serializer(self.get_object())
-        if not request.user == event.owner:
-            raise PermissionDenied("you cannot delete this event")
+        # if not request.user.is_admin == event.owner:
+        #     raise PermissionDenied("you cannot delete this event")
         super().destroy(request, *args, **kwargs)
         return Response(serializer.data, status=status.HTTP_200_OK)
         # return super().destroy(request, *args, **kwargs)
+
+
+# TODO: create a get request to get all events but without token
+class EventViewSetPublic(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        return queryset
 
 
 class EventAttendances(generics.ListCreateAPIView):
@@ -103,13 +114,16 @@ class AttendancesViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
     def destroy(self, request, *args, **kwargs):
+        print("destroy attendance viewset")
         attendance = Attendance.objects.get(pk=self.kwargs["pk"])
+        serializer = self.get_serializer(self.get_object())
         # TODO: only admin can destroy an attendance
         if not request.user == attendance.owner:
             raise PermissionDenied(
                 "you have no permission to delete this attendance"
             )
-        return super().destroy(request, *args, **kwargs)
+        super().destroy(request, *args, **kwargs)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def update(self, request, *args, **kwargs):
         attendance = Attendance.objects.get(pk=self.kwargs["pk"])
