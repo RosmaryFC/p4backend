@@ -271,6 +271,8 @@ class EventViewSetPublic(viewsets.ModelViewSet):
         return queryset
 ```
 ***SOLUTION*** changes AllowAny to IsAuthenticatedOrReadOnly
+https://medium.com/@taranjeet/django-implementing-view-only-permissions-d3f5e6371b3
+https://www.django-rest-framework.org/api-guide/permissions/
 ```
 # TODO: create a get request to get all events but without token
 class EventViewSetPublic(viewsets.ModelViewSet):

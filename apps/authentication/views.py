@@ -48,3 +48,10 @@ class LoginAPIView(APIView):
         serializer.is_valid(raise_exception=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class UserViewSet(ReadOnlyModelViewSet):
+    permission_classes = (AllowAny,)
+    serializer_class = UserListSerializer
+
+    queryset = User.objects.all()

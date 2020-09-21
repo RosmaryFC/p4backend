@@ -25,7 +25,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'is_admin', 'token')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'is_admin', 'token')
 
     def validate(self, data):
         username = data.get('username', None)
@@ -61,7 +61,6 @@ class LoginSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
-    # TODO: List all students, should be public
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_admin')
