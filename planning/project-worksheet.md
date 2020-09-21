@@ -160,7 +160,7 @@ def destroy(self, request, *args, **kwargs):
 
 STATUS 204: no content
 ```
-***RESPONSE***: fix delete request method to return a response
+***RESOLUTION***: fix delete request method to return a response
 ```
     def destroy(self, request, *args, **kwargs):
         print("destroy attendance viewset")
