@@ -25,7 +25,7 @@ Hiraldo's Kai is a great place to stay up to date with the martial arts communit
 [frontend](https://hiraldokai.netlify.app/) 
 ***
 ### Technologies
-The backend is made with Ruby on Rails, and PostgreSQL. It is deployed through Heroku. 
+The backend is made with Python, Django, and PostgreSQL. It is deployed through Heroku. 
 
 [<img src ="https://banner2.cleanpng.com/20180711/rtc/kisspng-django-web-development-web-framework-python-softwa-django-5b45d913f29027.4888902515313042119936.jpg" width="60" height="50">](https://www.djangoproject.com/)
 [<img src ="https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc" width="50" height="50">](https://www.python.org/)
