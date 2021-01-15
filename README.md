@@ -4,7 +4,6 @@
 
 ### Project Snapshots
 
- UPDATE! WIll go here
 ***
 
 ### Description
